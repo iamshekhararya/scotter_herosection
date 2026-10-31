@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ───────── theme tokens (space-separated RGB so Tailwind opacity works) ───────── */
+:root {
+  --page: 207 217 218;
+  --surface: 234 234 234;
+  --panel: 208 209 211;
+  --ink: 15 15 15;
+  --muted: 88 90 94;
+  --chip: 255 255 255;
+  color-scheme: light;
+}
+
+.dark {
+  --page: 11 12 13;
+  --surface: 23 24 26;
+  --panel: 37 39 43;
+  --ink: 244 244 245;
+  --muted: 160 163 170;
+  --chip: 52 54 59;
+  color-scheme: dark;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  @apply bg-page font-sans text-ink antialiased;
+  transition: background-color 0.4s ease;
+}
+
+/* keyboard focus that is visible on every surface */
+:focus-visible {
+  outline: 2px solid rgb(var(--ink));
+  outline-offset: 3px;
+}
+
+/* respect "reduce motion" (autoplay is switched off in JS as well) */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Skot – Super fast electric Moped</title>
+    <meta name="description" content="Skot electric mopeds – agile, silent and ready to strike. Pick your colour and book a test ride." />
+    <meta name="theme-color" content="#cfd9da" />
+
+    <!-- apply the saved theme before first paint (no light/dark flash) -->
+    <script>
+      try {
+        if (localStorage.getItem("skot-theme") === "dark") document.documentElement.classList.add("dark");
+      } catch (e) {}
+    </script>
+
+    <link rel="preload" as="image" href="/scooters/white.webp" type="image/webp" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
