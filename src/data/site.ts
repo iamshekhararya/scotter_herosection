@@ -1,195 +1,168 @@
-import { Feather, Leaf, RotateCcw, ShieldCheck, Truck, Wind } from "lucide-react";
-import type { LucideIcon } from "lucide-react";
+import type { IconName } from "../components/FeatureIcons";
 
 /**
- * Everything on the page below the hero is PLACEHOLDER content, so the page reads as finished.
- * Replace the wording, prices, numbers and contact details with your real ones.
+ * Everything below the hero is PLACEHOLDER copy so the page reads as finished.
+ * Replace the wording, prices and contact details with your real content.
  */
 
-/** the contact form opens the visitor's email app addressed here – change it! */
-export const CONTACT_EMAIL = "hello@volterra.example";
+/** the test-ride form opens the visitor's email app addressed here – change it! */
+export const CONTACT_EMAIL = "hello@skot.example";
 
-/** prices are formatted with this currency */
-export const CURRENCY = { locale: "en-US", code: "USD" };
-
-export const navLinks = [
-  { label: "Home", href: "#home" },
-  { label: "Shop", href: "#shop" },
-  { label: "Products", href: "#products" },
+export const quickLinks = [
   { label: "About", href: "#about" },
-  { label: "Contact", href: "#contact" },
+  { label: "Collections", href: "#collections" },
+  { label: "Services", href: "#services" },
+  { label: "Options", href: "#options" },
 ];
 
-/** ids of the sections the floating menu highlights, in page order */
-export const spyIds = ["home", "shop", "products", "about", "contact"];
-
-export const marquee: { icon: LucideIcon; text: string }[] = [
-  { icon: Truck, text: "Fast, tracked delivery" },
-  { icon: RotateCcw, text: "Easy returns" },
-  { icon: Feather, text: "Ultra-light build" },
-  { icon: Leaf, text: "Recycled materials" },
-  { icon: ShieldCheck, text: "Warranty included" },
-];
-
-/* ───────────────────────── shop ───────────────────────── */
-
-export interface Product {
-  name: string;
-  price: number;
-  tagline: string;
-}
-
-/** keyed by the id of a variant in data/variants.ts – SAMPLE names and prices */
-export const products: Record<string, Product> = {
-  orange: {
-    name: "Volterra Aero",
-    price: 149,
-    tagline: "Our everyday all-rounder – light, springy and ready for any road.",
-  },
-  blue: {
-    name: "Volterra Flow",
-    price: 149,
-    tagline: "Cooling mesh and soft cushioning for long, warm-weather miles.",
-  },
-  purple: {
-    name: "Volterra Dusk",
-    price: 169,
-    tagline: "A limited colourway with a trail-ready outsole for rougher ground.",
-  },
-};
-
-export const sizes = [7, 8, 9, 10, 11];
-
-/* ─────────────────────── technology ─────────────────────── */
-
-export interface Tech {
-  icon: LucideIcon;
+export interface Feature {
+  icon: IconName;
   title: string;
   body: string;
-  /** SAMPLE spec – replace with your real figure */
-  stat: { value: string; label: string };
-  /** where the pin sits on the shoe image, in % */
-  pin: { x: number; y: number };
 }
 
-export const tech: Tech[] = [
+export const features: Feature[] = [
+  { icon: "bolt", title: "Instant torque", body: "Electric power from a standstill – quick off the lights, whisper-quiet the whole way." },
+  { icon: "battery", title: "Charge anywhere", body: "A removable battery charges from a normal socket, at home or at your desk." },
+  { icon: "phone", title: "Smart & connected", body: "Lock, locate and check your charge from your phone." },
+  { icon: "leaf", title: "Zero tailpipe emissions", body: "Cleaner streets and cheaper running costs than petrol, every single ride." },
+];
+
+export interface Service {
+  icon: IconName;
+  title: string;
+  body: string;
+  tag: string;
+}
+
+export const services: Service[] = [
+  { icon: "calendar", title: "Test rides", body: "Try any colour and model before you decide. Pick a slot that suits you.", tag: "Free" },
+  { icon: "truck", title: "Home delivery", body: "Your Skot arrives ready to ride, with a full walk-through of the controls.", tag: "Nationwide" },
+  { icon: "wrench", title: "Servicing & repairs", body: "Fewer moving parts means less to fix – and our team handles the rest.", tag: "Certified" },
+  { icon: "card", title: "Flexible finance", body: "Buy outright, lease or subscribe. Spread the cost the way you prefer.", tag: "From monthly" },
+];
+
+export const steps = [
+  { n: "01", title: "Pick your Skot", body: "Choose a model and a colour that fits the way you ride." },
+  { n: "02", title: "Book a test ride", body: "Feel the acceleration for yourself – no pressure, no obligation." },
+  { n: "03", title: "We deliver", body: "Order online and we bring it to your door, charged and registered-ready." },
+];
+
+export interface Plan {
+  id: string;
+  name: string;
+  blurb: string;
+  price: number;
+  unit: string;
+  perks: string[];
+  featured?: boolean;
+}
+
+/** SAMPLE prices – replace with your real ones */
+export const plans: Plan[] = [
   {
-    icon: Feather,
-    title: "Ultra Light",
-    body: "A featherlight knit upper keeps the weight down, so every stride feels effortless.",
-    stat: { value: "240 g", label: "Weight per shoe" },
-    pin: { x: 31, y: 6 },
+    id: "buy",
+    name: "Buy",
+    blurb: "Own it outright from day one.",
+    price: 2490,
+    unit: "one-off",
+    perks: ["Choose any colour", "Home delivery", "Manufacturer warranty"],
   },
   {
-    icon: Wind,
-    title: "Breathable Mesh",
-    body: "Open-weave mesh channels air through the shoe to keep your feet cool, mile after mile.",
-    stat: { value: "360°", label: "Airflow" },
-    pin: { x: 62, y: 50 },
+    id: "lease",
+    name: "Lease",
+    blurb: "Low monthly payments, flexible end.",
+    price: 59,
+    unit: "per month",
+    perks: ["Everything in Buy", "Servicing included", "Upgrade after the term"],
+    featured: true,
   },
   {
-    icon: ShieldCheck,
-    title: "Durable Grip",
-    body: "Deep, multi-directional lugs bite into wet roads and loose trails alike.",
-    stat: { value: "5 mm", label: "Lug depth" },
-    pin: { x: 72, y: 81 },
-  },
-  {
-    icon: Leaf,
-    title: "Eco Friendly",
-    body: "Made with recycled materials and shipped in plastic-free packaging.",
-    stat: { value: "30%", label: "Recycled content" },
-    pin: { x: 50, y: 64 },
+    id: "subscribe",
+    name: "Subscribe",
+    blurb: "Ride now, cancel when you like.",
+    price: 89,
+    unit: "per month",
+    perks: ["Everything in Lease", "Insurance help", "Swap models anytime"],
   },
 ];
 
-/* ───────────────────────── about ───────────────────────── */
+export interface Addon {
+  id: string;
+  label: string;
+  price: number;
+}
 
-/** SAMPLE figures – replace with your real ones. The two last stats come from your data automatically. */
-export const aboutStats = [
-  { to: 50, suffix: "k+", label: "Runners worldwide" },
-  { to: 30, suffix: "+", label: "Countries shipped to" },
+/** SAMPLE prices – replace with your real ones */
+export const addons: Addon[] = [
+  { id: "topbox", label: "Top box", price: 120 },
+  { id: "helmet", label: "Helmet", price: 89 },
+  { id: "mount", label: "Phone mount", price: 25 },
+  { id: "battery", label: "Spare battery", price: 450 },
+  { id: "cover", label: "Weather cover", price: 35 },
 ];
-
-/* ──────────────────────── reviews ──────────────────────── */
 
 export interface Review {
   quote: string;
   name: string;
-  role: string;
+  place: string;
+  avatar: 0 | 1 | 2;
   /** shows a "Sample" tag – delete this line once you use a real review */
   sample?: boolean;
 }
 
 /** SAMPLE reviews – swap in real customer reviews, then remove `sample: true` */
 export const reviews: Review[] = [
-  {
-    quote: "So light I forgot I was wearing them. The cushioning holds up on long runs too.",
-    name: "Sample runner A",
-    role: "Road runner",
-    sample: true,
-  },
-  {
-    quote: "The mesh keeps my feet cool even in summer, and the grip on wet paths is excellent.",
-    name: "Sample runner B",
-    role: "Weekend jogger",
-    sample: true,
-  },
-  {
-    quote: "Colour looks even better in person. Comfortable straight out of the box.",
-    name: "Sample runner C",
-    role: "Trail runner",
-    sample: true,
-  },
+  { quote: "Silent, quick and so easy to park. I haven't missed the petrol station once.", name: "Sample rider A", place: "City commuter", avatar: 0, sample: true },
+  { quote: "The test ride sold me in five minutes. Charging overnight is simply effortless.", name: "Sample rider B", place: "Weekend rider", avatar: 1, sample: true },
+  { quote: "Delivered, explained and ready to go. Everything about the process felt thought through.", name: "Sample rider C", place: "First-time owner", avatar: 2, sample: true },
 ];
-
-/* ───────────────────────── faq ───────────────────────── */
 
 export const faqs = [
   {
-    q: "How do I find my size?",
-    a: "Choose the size you normally wear in running shoes. Volterra fits true to size with a little room in the toe box for long runs. If it doesn't feel right, get in touch and we'll help you swap.",
+    q: "How far can I ride on one charge?",
+    a: "It depends on the model. Our line-up ranges from around 48 miles on the Urban Y30 up to 95 miles on the Cruiser B25. Real-world range varies with speed, weight and weather.",
   },
   {
-    q: "What's the difference between the colourways?",
-    a: "They share the same lightweight build. Ocean Blue leans on cooling mesh for warm weather, Violet Dusk adds a trail-ready outsole, and Sunset Orange is the everyday all-rounder.",
+    q: "How long does a full charge take?",
+    a: "Between 2 and 4 hours depending on the model. Plug into a standard socket at home or at work – there's no special wallbox needed.",
   },
   {
-    q: "How long does delivery take?",
-    a: "Orders usually leave our warehouse within a couple of working days, and you'll get a tracking link as soon as yours ships.",
+    q: "Do I need a licence or insurance?",
+    a: "Rules depend on your country and on the power of the model you choose. We'll confirm exactly what you need before you order.",
   },
   {
-    q: "Can I return my shoes?",
-    a: "Yes. If they're unworn, send them back within the return window shown at checkout for a refund or an exchange.",
+    q: "Can I try one before I buy?",
+    a: "Yes – book a test ride and pick any colour or model you like. It's free and there's no obligation.",
   },
   {
-    q: "How should I clean them?",
-    a: "Brush off dry dirt, then hand-wash with mild soap and cold water. Air-dry away from direct heat and never use a tumble dryer.",
+    q: "What does the warranty cover?",
+    a: "Every Skot comes with a manufacturer warranty. The exact cover for the frame, motor and battery is listed on your order confirmation.",
   },
 ];
-
-/* ───────────────────────── footer ───────────────────────── */
 
 export const footerColumns = [
   {
     title: "Shop",
     links: [
-      { label: "New collection", href: "#shop" },
-      { label: "Technology", href: "#products" },
+      { label: "Collections", href: "#collections" },
+      { label: "Plans & options", href: "#options" },
+      { label: "Book a test ride", href: "#contact" },
     ],
   },
   {
     title: "Company",
     links: [
       { label: "About", href: "#about" },
+      { label: "Services", href: "#services" },
       { label: "Reviews", href: "#reviews" },
     ],
   },
   {
-    title: "Help",
+    title: "Support",
     links: [
       { label: "FAQ", href: "#faq" },
-      { label: "Contact", href: "#contact" },
+      { label: "Contact us", href: "#contact" },
     ],
   },
 ];

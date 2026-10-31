@@ -3,16 +3,22 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#0f172a" />
-    <meta
-      name="description"
-      content="Volterra - lightweight, breathable running shoes engineered for the dreamers. Move faster, go further."
-    />
-    <link
-      rel="icon"
-      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M2 6l9 4 5-6 5 6 9-4-4 12-10 10L6 18 2 6z' fill='%230f172a'/%3E%3C/svg%3E"
-    />
-    <title>Volterra | Move Faster, Go Further</title>
+    <title>Skot – Super fast electric Moped</title>
+    <meta name="description" content="Skot electric mopeds – agile, silent and ready to strike. Pick your colour and book a test ride." />
+    <meta name="theme-color" content="#cfd9da" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Crect width='28' height='28' rx='8' fill='%23e5493f'/%3E%3Cpath d='M7 23V13.5A6.5 6.5 0 0113.5 7H22' stroke='%23fff' stroke-width='2.2' stroke-linecap='round' fill='none'/%3E%3Cpath d='M12.5 23v-6a4 4 0 014-4H22' stroke='%23fff' stroke-opacity='.65' stroke-width='2.2' stroke-linecap='round' fill='none'/%3E%3C/svg%3E" />
+
+    <!-- apply the saved theme before first paint (no light/dark flash) -->
+    <script>
+      try {
+        if (localStorage.getItem("skot-theme") === "dark") document.documentElement.classList.add("dark");
+      } catch (e) {}
+    </script>
+
+    <link rel="preload" as="image" href="/scooters/white.webp" type="image/webp" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&display=swap" rel="stylesheet" />
   </head>
   <body>
     <div id="root"></div>

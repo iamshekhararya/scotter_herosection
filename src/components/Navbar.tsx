@@ -1,7 +1,12 @@
 import { useEffect, useState } from "react";
 import { BagIcon, CloseIcon, LogoMark, MenuIcon, MoonIcon, PhoneIcon, SearchIcon, SunIcon } from "./Icons";
 
-const links = ["About", "Collections", "Services", "Options"];
+const links = [
+  { label: "About", href: "#about" },
+  { label: "Collections", href: "#collections" },
+  { label: "Services", href: "#services" },
+  { label: "Options", href: "#options" },
+];
 
 const chip =
   "bg-chip/90 shadow-[0_1px_4px_rgba(0,0,0,0.05)] transition-colors hover:bg-chip";
@@ -53,8 +58,8 @@ export default function Navbar({ dark, onToggleTheme }: Props) {
         </button>
         <nav aria-label="Primary" className="hidden items-center gap-1 lg:flex">
           {links.map((l) => (
-            <a key={l} href="#" className="rounded-full px-3 py-2 transition-colors hover:bg-chip/70">
-              {l}
+            <a key={l.label} href={l.href} className="rounded-full px-3 py-2 transition-colors hover:bg-chip/70">
+              {l.label}
             </a>
           ))}
         </nav>
@@ -62,7 +67,7 @@ export default function Navbar({ dark, onToggleTheme }: Props) {
 
       {/* centre: logo */}
       <a
-        href="#"
+        href="#home"
         aria-label="Skot – home"
         className="absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 items-center gap-2.5"
       >
@@ -74,7 +79,7 @@ export default function Navbar({ dark, onToggleTheme }: Props) {
       <div className="flex items-center gap-2">
         <div className="hidden items-center gap-2 md:flex">
           {themeSwitch}
-          <button className={`hidden h-9 rounded-full px-4 lg:block ${chip}`}>Contact us</button>
+          <a href="#contact" className={`hidden h-9 items-center rounded-full px-4 lg:inline-flex ${chip}`}>Contact us</a>
           <button aria-label="Call us" className={`hidden h-9 w-9 items-center justify-center rounded-full lg:flex ${chip}`}>
             <PhoneIcon />
           </button>
@@ -105,13 +110,13 @@ export default function Navbar({ dark, onToggleTheme }: Props) {
         <div className="absolute inset-x-3 top-[68px] z-50 animate-fadeUp rounded-3xl bg-chip p-3 shadow-[0_20px_50px_rgba(0,0,0,0.18)] lg:hidden">
           <nav aria-label="Mobile" className="flex flex-col">
             {links.map((l) => (
-              <a key={l} href="#" onClick={() => setOpen(false)} className="rounded-2xl px-4 py-3 text-[16px] transition-colors hover:bg-ink/5">
-                {l}
+              <a key={l.label} href={l.href} onClick={() => setOpen(false)} className="rounded-2xl px-4 py-3 text-[16px] transition-colors hover:bg-ink/5">
+                {l.label}
               </a>
             ))}
           </nav>
           <div className="mt-2 flex items-center justify-between gap-3 border-t border-ink/10 px-2 pt-3">
-            <button className="h-10 flex-1 rounded-full bg-ink text-surface">Contact us</button>
+            <a href="#contact" onClick={() => setOpen(false)} className="flex h-10 flex-1 items-center justify-center rounded-full bg-ink text-surface">Contact us</a>
             <button aria-label="Call us" className="flex h-10 w-10 items-center justify-center rounded-full bg-ink/5">
               <PhoneIcon />
             </button>

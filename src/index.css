@@ -2,32 +2,59 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  html {
-    scroll-behavior: smooth;
-    -webkit-text-size-adjust: 100%;
-  }
-
-  body {
-    @apply m-0 bg-slate-900 font-sans antialiased;
-  }
-
-  /* visible keyboard focus everywhere */
-  :focus-visible {
-    outline: 2px solid #fff;
-    outline-offset: 3px;
-  }
+/* ───────── theme tokens (space-separated RGB so Tailwind opacity works) ───────── */
+:root {
+  --page: 207 217 218;
+  --surface: 234 234 234;
+  --panel: 208 209 211;
+  --ink: 15 15 15;
+  --muted: 88 90 94;
+  --chip: 255 255 255;
+  color-scheme: light;
 }
 
-@layer utilities {
-  .text-shadow {
-    text-shadow: 0 1px 12px rgb(0 0 0 / 0.55);
-  }
+.dark {
+  --page: 11 12 13;
+  --surface: 23 24 26;
+  --panel: 37 39 43;
+  --ink: 244 244 245;
+  --muted: 160 163 170;
+  --chip: 52 54 59;
+  color-scheme: dark;
 }
 
-/* no entrance animations for people who ask for reduced motion */
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+/* in-page links (nav, buttons) glide to their section */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-page font-sans text-ink antialiased;
+  transition: background-color 0.4s ease;
+}
+
+/* keyboard focus that is visible on every surface */
+:focus-visible {
+  outline: 2px solid rgb(var(--ink));
+  outline-offset: 3px;
+}
+
+/* respect "reduce motion" (autoplay is switched off in JS as well) */
 @media (prefers-reduced-motion: reduce) {
-  .animate-fade-up {
-    animation: none;
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { ReactNode } from "react";
 import { useInView } from "../hooks/useInView";
 
 interface Props {
@@ -15,7 +15,7 @@ export default function Reveal({ children, delay = 0, className = "" }: Props) {
     <div
       ref={ref}
       style={{ animationDelay: `${delay}ms` }}
-      className={`${inView ? "animate-fade-up" : "opacity-0"} ${className}`}
+      className={`${inView ? "animate-fadeUp" : "opacity-0"} ${className}`}
     >
       {children}
     </div>

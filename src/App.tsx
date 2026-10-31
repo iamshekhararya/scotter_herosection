@@ -1,50 +1,43 @@
-import { useCallback, useState } from "react";
-import type { CSSProperties } from "react";
-import { VARIANTS } from "./data/variants";
+import { useState } from "react";
+import { scooters } from "./data/scooters";
+import { useTheme } from "./hooks/useTheme";
 import About from "./components/About";
+import Collections from "./components/Collections";
 import Contact from "./components/Contact";
 import Faq from "./components/Faq";
 import Footer from "./components/Footer";
 import Hero from "./components/Hero";
-import Marquee from "./components/Marquee";
+import Options from "./components/Options";
 import Reviews from "./components/Reviews";
-import Shop from "./components/Shop";
+import Services from "./components/Services";
 import StickyNav from "./components/StickyNav";
-import Technology from "./components/Technology";
 
 export default function App() {
-  // the hero's active colourway: the whole page follows its accent colours and backgrounds
-  const [heroIndex, setHeroIndex] = useState(0);
-  const [cart, setCart] = useState(2);
-  const addToCart = useCallback(() => setCart((c) => c + 1), []);
-
-  const v = VARIANTS[heroIndex];
-  const themeVars = {
-    "--accent": v.accent,
-    "--from": v.gradient[0],
-    "--to": v.gradient[1],
-  } as CSSProperties;
+  // one theme switch for the whole page (hero navbar + floating menu)
+  const { dark, toggle } = useTheme();
+  // model chosen on a collection card pre-fills the test-ride form
+  const [model, setModel] = useState(scooters[0].id);
 
   return (
-    <div style={themeVars} className="bg-slate-900 text-white">
+    <>
       <a
-        href="#shop"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-white focus:px-5 focus:py-3 focus:text-slate-900"
+        href="#about"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-ink focus:px-5 focus:py-3 focus:text-surface"
       >
         Skip to content
       </a>
-      <StickyNav cartCount={cart} />
-      <main>
-        <Hero cartCount={cart} onIndexChange={setHeroIndex} />
-        <Marquee />
-        <Shop onAdd={addToCart} />
-        <Technology />
-        <About index={heroIndex} />
+      <StickyNav dark={dark} onToggleTheme={toggle} />
+      <main className="bg-page">
+        <Hero dark={dark} onToggleTheme={toggle} />
+        <About />
+        <Collections onTestRide={setModel} />
+        <Services />
+        <Options />
         <Reviews />
         <Faq />
-        <Contact index={heroIndex} />
+        <Contact model={model} onModelChange={setModel} />
       </main>
       <Footer />
-    </div>
+    </>
   );
 }
